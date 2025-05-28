@@ -9,9 +9,9 @@
     <ul class="menu" id="menu-list">
 
         @if ($role === 'administrator')
-            <li><a href="#">Dashboard</a></li>
+            <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
             <li><a href="#">Status</a></li>
-            <li><a href="#">Data Pengguna</a></li>
+            <li><a href="{{ route('user.index') }}">Data Pengguna</a></li>
             <li><a href="#">Kategori</a></li>
             <li><a href="#">Sarana Simpan</a></li>
             <li><a href="#">Arsip Dokumen</a></li>
@@ -30,9 +30,9 @@
                 </a>
             </li>
         @elseif ($role === 'petugas')
-            <li><a href="#">Dashboard</a></li>
+            <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
             <li><a href="#">Status</a></li>
-            <li><a href="#">Data Pengguna</a></li>
+            <li><a href="{{ route('user.index') }}">Data Pengguna</a></li>
             <li><a href="#">Kategori</a></li>
             <li><a href="#">Sarana Simpan</a></li>
             <li><a href="#">Arsip Dokumen</a></li>
@@ -50,7 +50,7 @@
                 </a>
             </li>
         @elseif ($role === 'staff')
-            <li><a href="#">Dashboard</a></li>
+            <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
             <li><a href="#">Arsip Dokumen</a></li>
             <li><a href="#">Profil Pengguna</a></li>
             <li>

@@ -15,12 +15,15 @@
 
     @include('components.sidebar')
 
-    @yield('content')
+    <main class="main" id="pageContents">
+        @yield('content')
 
-    <footer class="footer">
-        <img src="{{ asset('img/logo-unesa.png') }}" alt="Logo Unesa" />
-        Copyright © 2025. Sarjana Terapan Administrasi Negara
-    </footer>
+        <footer class="footer">
+            <img src="{{ asset('img/logo-unesa.png') }}" alt="Logo Unesa" />
+            Copyright © 2025. Sarjana Terapan Administrasi Negara
+        </footer>
+    </main>
+
 
     <!-- Modal Konfirmasi Logout -->
     <div id="logout-modal"

@@ -109,18 +109,42 @@ header h1 {
     vertical-align: middle;
 }
 
-.card table th {
-    background-color: #f0f0f0;
-    color: #333;
-}
-
-.card table td,
-.card table th {
-    border: 1px solid #ccc;
-}
-
 .card table {
+    width: 100%;
+    border-collapse: collapse;
     font-size: 14px;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(44, 62, 80, 0.06);
+}
+
+.card table th,
+.card table td {
+    border: 1px solid #e0e0e0;
+    padding: 12px 10px;
+    text-align: left;
+}
+
+.card table th {
+    background-color: #1abc9c;
+    color: #fff;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+.card table tr:nth-child(even) td {
+    background-color: #f8f9fa;
+}
+
+.card table tr:hover td {
+    background-color: #e8f6f3;
+    transition: background 0.2s;
+}
+
+.card table td:last-child,
+.card table th:last-child {
+    text-align: center;
 }
 
 /* Form styling */
