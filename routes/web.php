@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\StatusController;
 use App\Http\Controllers\UserController;
 
 Route::get('/', [AuthController::class, 'showLoginForm'])->name('loginForm');
@@ -27,4 +28,7 @@ Route::middleware('auth')->group(function () {
         Route::delete('/{user}', [UserController::class, 'destroy'])
             ->name('destroy');
     });
+
+    Route::get('/status', [StatusController::class, 'index'])
+        ->name('status.index');
 });

@@ -9,9 +9,15 @@
     <ul class="menu" id="menu-list">
 
         @if ($role === 'administrator')
-            <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
-            <li><a href="#">Status</a></li>
-            <li><a href="{{ route('user.index') }}">Data Pengguna</a></li>
+            <li>
+                <a class="{{ request()->is('dashboard*') ? 'active' : '' }}" href="{{ route('dashboard') }}">Dashboard</a>
+            </li>
+            <li><a class="{{ request()->is('status*') ? 'active' : '' }}" href="{{ route('status.index') }}">Status</a>
+            </li>
+            <li>
+                <a class="{{ request()->is('user*') ? 'active' : '' }}" href="{{ route('user.index') }}">Data
+                    Pengguna</a>
+            </li>
             <li><a href="#">Kategori</a></li>
             <li><a href="#">Sarana Simpan</a></li>
             <li><a href="#">Arsip Dokumen</a></li>
@@ -30,9 +36,12 @@
                 </a>
             </li>
         @elseif ($role === 'petugas')
-            <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
-            <li><a href="#">Status</a></li>
-            <li><a href="{{ route('user.index') }}">Data Pengguna</a></li>
+            <li><a class="{{ request()->is('dashboard*') ? 'active' : '' }}"
+                    href="{{ route('dashboard') }}">Dashboard</a></li>
+            <li><a class="{{ request()->is('status*') ? 'active' : '' }}"
+                    href="{{ route('status.index') }}">Status</a></li>
+            <li><a class="{{ request()->is('user*') ? 'active' : '' }}" href="{{ route('user.index') }}">Data
+                    Pengguna</a></li>
             <li><a href="#">Kategori</a></li>
             <li><a href="#">Sarana Simpan</a></li>
             <li><a href="#">Arsip Dokumen</a></li>

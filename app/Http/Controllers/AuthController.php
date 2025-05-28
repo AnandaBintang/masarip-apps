@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -27,6 +28,12 @@ class AuthController extends Controller
 
         if (Auth::attempt(['username' => $credentials['username'], 'password' => $credentials['password']])) {
             $request->session()->regenerate();
+
+            $user = User::find(Auth::id());
+            if ($user) {
+                $user->logged_in += 1;
+                $user->save();
+            }
 
             return redirect()->route('dashboard');
         }
