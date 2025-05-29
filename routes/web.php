@@ -3,8 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProfilDesaController;
 use App\Http\Controllers\StatusController;
 use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Artisan;
 
 Route::get('/', function () {
     return redirect()->route('loginForm');
@@ -50,4 +52,20 @@ Route::middleware('auth')->group(function () {
         Route::delete('/{category}', [CategoryController::class, 'destroy'])
             ->name('destroy');
     });
+
+    Route::prefix('profil-desa')->name('profil_desa.')->group(function () {
+        Route::get('/', [ProfilDesaController::class, 'index'])
+            ->name('index');
+        Route::post('/store', [ProfilDesaController::class, 'store'])
+            ->name('store');
+    });
+});
+
+Route::get('/setup', function () {
+    Artisan::call('key:generate');
+    Artisan::call('migrate', ['--force' => true]);
+    Artisan::call('db:seed', ['--force' => true]);
+    Artisan::call('storage:link');
+
+    return 'Setup completed. All artisan commands have been executed.';
 });

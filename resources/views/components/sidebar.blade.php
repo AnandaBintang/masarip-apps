@@ -22,7 +22,8 @@
                     href="{{ route('category.index') }}">Kategori</a></li>
             <li><a href="#">Sarana Simpan</a></li>
             <li><a href="#">Arsip Dokumen</a></li>
-            <li><a href="#">Profil Desa</a></li>
+            <li><a class="{{ request()->is('profil-desa') ? 'active' : '' }}"
+                    href="{{ route('profil_desa.index') }}">Profil Desa</a></li>
             <li><a href="#">Profil Pengguna</a></li>
             <li>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
