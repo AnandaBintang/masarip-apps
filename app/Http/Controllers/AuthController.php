@@ -36,6 +36,7 @@ class AuthController extends Controller
             $user = User::find(Auth::id());
             if ($user) {
                 $user->logged_in += 1;
+                $user->is_online = true;
                 $user->save();
             }
 
@@ -50,7 +51,14 @@ class AuthController extends Controller
      */
     public function logout(Request $request)
     {
+        $user = User::find(Auth::id());
+        if ($user) {
+            $user->is_online = false;
+            $user->save();
+        }
+
         Auth::logout();
+
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
