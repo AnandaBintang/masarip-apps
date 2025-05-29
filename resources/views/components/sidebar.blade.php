@@ -18,7 +18,8 @@
                 <a class="{{ request()->is('user*') ? 'active' : '' }}" href="{{ route('user.index') }}">Data
                     Pengguna</a>
             </li>
-            <li><a href="#">Kategori</a></li>
+            <li><a class="{{ request()->is('category*') ? 'active' : '' }}"
+                    href="{{ route('category.index') }}">Kategori</a></li>
             <li><a href="#">Sarana Simpan</a></li>
             <li><a href="#">Arsip Dokumen</a></li>
             <li><a href="#">Profil Desa</a></li>
@@ -42,7 +43,8 @@
                     href="{{ route('status.index') }}">Status</a></li>
             <li><a class="{{ request()->is('user*') ? 'active' : '' }}" href="{{ route('user.index') }}">Data
                     Pengguna</a></li>
-            <li><a href="#">Kategori</a></li>
+            <li><a class="{{ request()->is('category*') ? 'active' : '' }}"
+                    href="{{ route('category.index') }}">Kategori</a></li>
             <li><a href="#">Sarana Simpan</a></li>
             <li><a href="#">Arsip Dokumen</a></li>
             <li><a href="#">Profil Pengguna</a></li>

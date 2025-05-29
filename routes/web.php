@@ -2,10 +2,14 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\StatusController;
 use App\Http\Controllers\UserController;
 
-Route::get('/', [AuthController::class, 'showLoginForm'])->name('loginForm');
+Route::get('/', function () {
+    return redirect()->route('loginForm');
+})->name('home');
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('loginForm');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
@@ -31,4 +35,19 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/status', [StatusController::class, 'index'])
         ->name('status.index');
+
+    Route::prefix('category')->name('category.')->group(function () {
+        Route::get('/', [CategoryController::class, 'index'])
+            ->name('index');
+        Route::get('/create', [CategoryController::class, 'create'])
+            ->name('create');
+        Route::post('/store', [CategoryController::class, 'store'])
+            ->name('store');
+        Route::get('/{category}/edit', [CategoryController::class, 'edit'])
+            ->name('edit');
+        Route::put('/{category}', [CategoryController::class, 'update'])
+            ->name('update');
+        Route::delete('/{category}', [CategoryController::class, 'destroy'])
+            ->name('destroy');
+    });
 });
