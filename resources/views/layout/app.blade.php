@@ -15,10 +15,18 @@
 
     @include('components.sidebar')
 
-    <main class="main" id="pageContents">
-        @yield('content')
+    <main class="main" id="pageContents" style="position: relative; z-index: 1;">
+        <div
+            style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 0; display: flex; align-items: center; justify-content: center;">
+            <img src="{{ asset('img/logo-unesa.png') }}" alt="Logo Unesa Background"
+                style="max-width: 70vw; max-height: 60vh; opacity: 0.07;" />
+        </div>
 
-        <footer class="footer">
+        <div style="position: relative; z-index: 1;">
+            @yield('content')
+        </div>
+
+        <footer class="footer" style="position: relative; z-index: 2;">
             <img src="{{ asset('img/logo-unesa.png') }}" alt="Logo Unesa" />
             Copyright © 2025. Sarjana Terapan Administrasi Negara
         </footer>

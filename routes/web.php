@@ -3,7 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfilDesaController;
+use App\Http\Controllers\ProfileUserController;
 use App\Http\Controllers\StatusController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Artisan;
@@ -16,9 +18,8 @@ Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])
+        ->name('dashboard');
 
     Route::prefix('user')->name('user.')->group(function () {
         Route::get('/', [UserController::class, 'index'])
@@ -58,6 +59,13 @@ Route::middleware('auth')->group(function () {
             ->name('index');
         Route::post('/store', [ProfilDesaController::class, 'store'])
             ->name('store');
+    });
+
+    Route::prefix('profile')->name('profile.')->group(function () {
+        Route::get('/show', [ProfileUserController::class, 'showProfile'])
+            ->name('show');
+        Route::post('/update', [ProfileUserController::class, 'updateProfile'])
+            ->name('update');
     });
 });
 

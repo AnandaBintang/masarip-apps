@@ -205,3 +205,129 @@ button:hover {
     /* agar di belakang teks */
     border-radius: 10px;
 }
+
+.text-danger {
+    color: #e74c3c;
+}
+.text-success {
+    color: #2ecc71;
+}
+.text-warning {
+    color: #f39c12;
+}
+.text-info {
+    color: #3498db;
+}
+.text-primary {
+    color: #2980b9;
+}
+.text-secondary {
+    color: #7f8c8d;
+}
+.text-muted {
+    color: #95a5a6;
+}
+.text-dark {
+    color: #2c3e50;
+}
+
+/* ...existing styles... */
+
+/* Responsive styles */
+@media (max-width: 1024px) {
+    .cards {
+        flex-direction: column;
+        gap: 16px;
+    }
+    .sidebar {
+        width: 180px;
+        padding: 15px;
+    }
+    .main {
+        padding: 15px;
+    }
+    .card {
+        min-width: 220px;
+        padding: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        flex-direction: column;
+    }
+    .sidebar {
+        width: 100%;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 15px;
+    }
+    .sidebar h2,
+    .user-info {
+        display: none;
+    }
+    .menu {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        width: 100%;
+        justify-content: center;
+    }
+    .menu li {
+        margin-bottom: 0;
+    }
+    .logout-btn {
+        margin-top: 0;
+        margin-left: auto;
+    }
+    .main {
+        padding: 10px;
+    }
+    .cards {
+        flex-direction: column;
+        gap: 12px;
+    }
+    .card {
+        min-width: 0;
+        width: 100%;
+        padding: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .sidebar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 8px;
+    }
+    .menu {
+        flex-direction: column;
+        gap: 0;
+        width: 100%;
+    }
+    .main {
+        padding: 6px;
+    }
+    .card {
+        padding: 8px;
+        font-size: 13px;
+    }
+    .card table th,
+    .card table td {
+        padding: 8px 5px;
+        font-size: 12px;
+    }
+    .welcome-message {
+        font-size: 16px;
+        margin: 10px;
+    }
+    #welcomeMessage {
+        padding: 16px;
+        font-size: 15px;
+    }
+    .footer {
+        font-size: 11px;
+        padding: 6px 0;
+    }
+}
