@@ -1,8 +1,8 @@
 <aside class="sidebar">
-    <div class="logo">
-        <img src="{{ asset('img/logo-arsip.png') }}" alt="MasAriP Logo" class="logo-image"
-            style="max-width: 100%; height: auto; display: block;">
-        <h2 style="font-size: clamp(1rem, 4vw, 1.5rem); margin: 0.5rem 0;">MasAriP</h2>
+    <div class="logo" style="display: flex; align-items: center; gap: 0.5rem;">
+        <img src="{{ asset('img/logo-arsip-no-text.png') }}" alt="MasAriP Logo" class="logo-image"
+            style="width: 3rem; height: 3rem; object-fit: contain;">
+        <h2 style="font-size: 1rem; margin: 0;">MasAriP</h2>
     </div>
     <div class="user-info">
         <span id="user-role">Role</span>
