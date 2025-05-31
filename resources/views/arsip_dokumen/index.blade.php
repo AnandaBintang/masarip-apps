@@ -50,7 +50,7 @@
                         <td>{{ $arsip->kategori }}</td>
                         <td>{{ $arsip->perihal }}</td>
                         <td>{{ $arsip->nama_dokumen }}</td>
-                        <td>{{ $arsip->tanggal_upload }}</td>
+                        <td>{{ \Carbon\Carbon::parse($arsip->tanggal_upload)->format('Y-m-d') }}</td>
                         <td>{{ $arsip->downloaded }}x</td>
                         <td>
                             <a href="{{ route('arsip_dokumen.view', $arsip->id) }}" target="_blank">

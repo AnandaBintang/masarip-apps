@@ -1,6 +1,12 @@
 @extends('layout.app')
 
 @section('content')
+    @if (session('warning'))
+        <div style="color: orange; margin-bottom: 15px; padding: 10px; border: 1px solid orange; background-color: #fff3cd;">
+            {{ session('warning') }}
+        </div>
+    @endif
+
     <form method="POST" action="{{ route('category.store') }}" id="kategori-form">
         @csrf
         <h3>Tambah Kategori</h3>

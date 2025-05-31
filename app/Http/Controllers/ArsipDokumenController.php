@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ArsipDokumen;
+use App\Models\Category;
+use App\Models\SaranaSimpan;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -42,7 +44,24 @@ class ArsipDokumenController extends Controller
      */
     public function create()
     {
-        return view('arsip_dokumen.create');
+        $saranaSimpan = SaranaSimpan::all();
+        $category = Category::all();
+
+        if ($saranaSimpan->isEmpty()) {
+            return redirect()->route('sarana_simpan.create')->with('warning', 'Silakan buat sarana simpan terlebih dahulu.');
+        }
+
+        if ($category->isEmpty()) {
+            return redirect()->route('category.create')->with('warning', 'Silakan buat kategori terlebih dahulu.');
+        }
+
+        $data = [
+            'title' => 'Tambah Dokumen',
+            'saranaSimpan' => $saranaSimpan,
+            'category' => $category,
+        ];
+
+        return view('arsip_dokumen.create', $data);
     }
 
     /**
