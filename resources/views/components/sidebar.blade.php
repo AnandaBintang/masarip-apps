@@ -22,7 +22,8 @@
                     href="{{ route('category.index') }}">Kategori</a></li>
             <li><a class="{{ request()->is('sarana-simpan*') ? 'active' : '' }}"
                     href="{{ route('sarana_simpan.index') }}">Sarana Simpan</a></li>
-            <li><a href="#">Arsip Dokumen</a></li>
+            <li><a class="{{ request()->is('arsip-dokumen*') ? 'active' : '' }}"
+                    href="{{ route('arsip_dokumen.index') }}">Arsip Dokumen</a></li>
             <li><a class="{{ request()->is('profil-desa') ? 'active' : '' }}"
                     href="{{ route('profil_desa.index') }}">Profil Desa</a></li>
             <li><a class="{{ request()->is('profile*') ? 'active' : '' }}" href="{{ route('profile.show') }}">Profil
@@ -50,7 +51,8 @@
                     href="{{ route('category.index') }}">Kategori</a></li>
             <li><a class="{{ request()->is('sarana-simpan*') ? 'active' : '' }}"
                     href="{{ route('sarana_simpan.index') }}">Sarana Simpan</a></li>
-            <li><a href="#">Arsip Dokumen</a></li>
+            <li><a class="{{ request()->is('arsip-dokumen*') ? 'active' : '' }}"
+                    href="{{ route('arsip_dokumen.index') }}">Arsip Dokumen</a></li>
             <li><a class="{{ request()->is('profile*') ? 'active' : '' }}" href="{{ route('profile.show') }}">Profil
                     Pengguna</a></li>
             <li>
@@ -67,7 +69,8 @@
             </li>
         @elseif ($role === 'staff')
             <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
-            <li><a href="#">Arsip Dokumen</a></li>
+            <li><a class="{{ request()->is('arsip-dokumen*') ? 'active' : '' }}"
+                    href="{{ route('arsip_dokumen.index') }}">Arsip Dokumen</a></li>
             <li><a class="{{ request()->is('profile*') ? 'active' : '' }}" href="{{ route('profile.show') }}">Profil
                     Pengguna</a></li>
             <li>

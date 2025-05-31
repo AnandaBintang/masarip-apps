@@ -4,7 +4,8 @@
     <h2>Data Sarana Simpan</h2>
     <div class="mb-3">
         <form class="d-flex align-items-center mb-2" method="GET" action="{{ route('sarana_simpan.index') }}">
-            <input type="text" name="search" id="search-sarana" placeholder="Cari sarana simpan..." value="{{ request('search') }}"
+            <input type="text" name="search" id="search-sarana" placeholder="Cari sarana simpan..."
+                value="{{ request('search') }}"
                 style="padding: 0.5rem; width: 250px; border: 1px solid #ccc; border-radius: 4px; margin-right: 8px;"
                 autocomplete="off" />
             <button type="submit"
@@ -34,7 +35,7 @@
                 </tr>
             </thead>
             <tbody id="sarana-table">
-                @foreach ($saranaSimpan as $sarana)
+                @forelse ($saranaSimpan as $sarana)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $sarana->kode_nomenklatur }}</td>
@@ -43,7 +44,8 @@
                             <a href="{{ route('sarana_simpan.edit', $sarana->id) }}">
                                 <button>Edit</button>
                             </a>
-                            <form action="{{ route('sarana_simpan.destroy', $sarana->id) }}" method="POST" style="display: inline;">
+                            <form action="{{ route('sarana_simpan.destroy', $sarana->id) }}" method="POST"
+                                style="display: inline;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit"
@@ -51,7 +53,11 @@
                             </form>
                         </td>
                     </tr>
-                @endforeach
+                @empty
+                    <tr>
+                        <td colspan="4" style="text-align: center;">Tidak ada data sarana simpan.</td>
+                    </tr>
+                @endforelse
             </tbody>
         </table>
     </div>

@@ -39,7 +39,7 @@
                         <td colspan="5" style="text-align: center;">Tidak ada kategori yang ditemukan.</td>
                     </tr>
                 @else
-                    @foreach ($categories as $index => $category)
+                    @forelse ($categories as $index => $category)
                         <tr>
                             <td>{{ $index + 1 }}</td>
                             <td>{{ $category->nama }}</td>
@@ -58,7 +58,11 @@
                                 </form>
                             </td>
                         </tr>
-                    @endforeach
+                    @empty
+                        <tr>
+                            <td colspan="5" style="text-align: center;">Tidak ada data kategori.</td>
+                        </tr>
+                    @endforelse
                 @endif
             </tbody>
         </table>

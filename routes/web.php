@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArsipDokumenController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
@@ -68,6 +69,25 @@ Route::middleware('auth')->group(function () {
             ->name('update');
         Route::delete('/{saranaSimpan}', [SaranaSimpanController::class, 'destroy'])
             ->name('destroy');
+    });
+
+    Route::prefix('arsip-dokumen')->name('arsip_dokumen.')->group(function () {
+        Route::get('/', [ArsipDokumenController::class, 'index'])
+            ->name('index');
+        Route::get('/create', [ArsipDokumenController::class, 'create'])
+            ->name('create');
+        Route::post('/store', [ArsipDokumenController::class, 'store'])
+            ->name('store');
+        Route::get('/{arsipDokumen}/edit', [ArsipDokumenController::class, 'edit'])
+            ->name('edit');
+        Route::put('/{arsipDokumen}', [ArsipDokumenController::class, 'update'])
+            ->name('update');
+        Route::delete('/{arsipDokumen}', [ArsipDokumenController::class, 'destroy'])
+            ->name('destroy');
+        Route::get('/download/{id}', [ArsipDokumenController::class, 'download'])
+            ->name('download');
+        Route::get('/view/{id}', [ArsipDokumenController::class, 'view'])
+            ->name('view');
     });
 
     Route::prefix('profil-desa')->name('profil_desa.')->group(function () {
