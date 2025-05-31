@@ -20,7 +20,8 @@
             </li>
             <li><a class="{{ request()->is('category*') ? 'active' : '' }}"
                     href="{{ route('category.index') }}">Kategori</a></li>
-            <li><a href="#">Sarana Simpan</a></li>
+            <li><a class="{{ request()->is('sarana-simpan*') ? 'active' : '' }}"
+                    href="{{ route('sarana_simpan.index') }}">Sarana Simpan</a></li>
             <li><a href="#">Arsip Dokumen</a></li>
             <li><a class="{{ request()->is('profil-desa') ? 'active' : '' }}"
                     href="{{ route('profil_desa.index') }}">Profil Desa</a></li>
@@ -47,7 +48,8 @@
                     Pengguna</a></li>
             <li><a class="{{ request()->is('category*') ? 'active' : '' }}"
                     href="{{ route('category.index') }}">Kategori</a></li>
-            <li><a href="#">Sarana Simpan</a></li>
+            <li><a class="{{ request()->is('sarana-simpan*') ? 'active' : '' }}"
+                    href="{{ route('sarana_simpan.index') }}">Sarana Simpan</a></li>
             <li><a href="#">Arsip Dokumen</a></li>
             <li><a class="{{ request()->is('profile*') ? 'active' : '' }}" href="{{ route('profile.show') }}">Profil
                     Pengguna</a></li>

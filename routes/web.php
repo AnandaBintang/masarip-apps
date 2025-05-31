@@ -6,6 +6,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfilDesaController;
 use App\Http\Controllers\ProfileUserController;
+use App\Http\Controllers\SaranaSimpanController;
 use App\Http\Controllers\StatusController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Artisan;
@@ -51,6 +52,21 @@ Route::middleware('auth')->group(function () {
         Route::put('/{category}', [CategoryController::class, 'update'])
             ->name('update');
         Route::delete('/{category}', [CategoryController::class, 'destroy'])
+            ->name('destroy');
+    });
+
+    Route::prefix('sarana-simpan')->name('sarana_simpan.')->group(function () {
+        Route::get('/', [SaranaSimpanController::class, 'index'])
+            ->name('index');
+        Route::get('/create', [SaranaSimpanController::class, 'create'])
+            ->name('create');
+        Route::post('/store', [SaranaSimpanController::class, 'store'])
+            ->name('store');
+        Route::get('/{saranaSimpan}/edit', [SaranaSimpanController::class, 'edit'])
+            ->name('edit');
+        Route::put('/{saranaSimpan}', [SaranaSimpanController::class, 'update'])
+            ->name('update');
+        Route::delete('/{saranaSimpan}', [SaranaSimpanController::class, 'destroy'])
             ->name('destroy');
     });
 
