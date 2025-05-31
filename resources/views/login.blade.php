@@ -45,7 +45,7 @@
 
         <div class="footer">
             <span>
-                <img src="{{ asset('asset/logo-unesa.png') }}" alt="Logo Unesa" />
+                <img src="{{ asset('img/logo-unesa.png') }}" alt="Logo Unesa" />
                 Copyright © 2025. Sarjana Terapan Administrasi Negara
             </span>
             <span class="footer-right">#SATULANGKAHDIDEPAN</span>
