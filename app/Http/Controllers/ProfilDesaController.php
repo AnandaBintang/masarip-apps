@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\ProfilDesa;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 
 class ProfilDesaController extends Controller
 {
@@ -39,10 +40,26 @@ class ProfilDesaController extends Controller
         $profilDesa->kata_kunci = $request->kata_kunci;
 
         if ($request->hasFile('logo')) {
-            if ($profilDesa->logo) {
-                Storage::disk('public')->delete($profilDesa->logo);
+            $destination = base_path('../public_html/logos');
+
+            // Buat folder jika belum ada
+            if (!File::exists($destination)) {
+                File::makeDirectory($destination, 0755, true);
             }
-            $profilDesa->logo = $request->file('logo')->store('logos', 'public');
+
+            // Hapus logo lama jika ada
+            if ($profilDesa->logo) {
+                $oldLogoPath = base_path('../public_html/' . $profilDesa->logo);
+                if (File::exists($oldLogoPath)) {
+                    File::delete($oldLogoPath);
+                }
+            }
+
+            $file = $request->file('logo');
+            $filename = 'logo-' . Str::slug($request->nama_kantor_desa) . '.' . $file->getClientOriginalExtension();
+            $file->move($destination, $filename);
+
+            $profilDesa->logo = 'logos/' . $filename; // path relative to public_html
         }
 
         $profilDesa->save();

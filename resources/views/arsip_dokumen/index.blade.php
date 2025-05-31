@@ -22,9 +22,11 @@
     </div>
 
     <div class="card">
-        <a href="{{ route('arsip_dokumen.create') }}">
-            <button>+ Tambah Arsip Dokumen</button>
-        </a>
+        @if (auth()->user()->role === 'administrator' || auth()->user()->role === 'petugas')
+            <a href="{{ route('arsip_dokumen.create') }}">
+                <button>+ Tambah Arsip Dokumen</button>
+            </a>
+        @endif
         <table border="1" cellpadding="10" style="margin-top: 20px; border-collapse: collapse; width: 100%;">
             <thead>
                 <tr>

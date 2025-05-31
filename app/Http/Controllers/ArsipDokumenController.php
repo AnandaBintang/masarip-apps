@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ArsipDokumen;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
@@ -64,7 +65,15 @@ class ArsipDokumenController extends Controller
         }
 
         $file = $request->file('file');
-        $filePath = $file->storeAs('dokumen', Str::slug($request->nama_dokumen) . '.' . $file->getClientOriginalExtension(), 'public');
+        $filename = Str::slug($request->nama_dokumen) . '.' . $file->getClientOriginalExtension();
+
+        $destination = base_path('../public_html/dokumen');
+
+        if (!File::exists($destination)) {
+            File::makeDirectory($destination, 0755, true);
+        }
+
+        $file->move($destination, $filename);
 
         $arsipDokumen = new ArsipDokumen();
         $arsipDokumen->kode_dokumen = $request->kode_dokumen;
@@ -73,7 +82,7 @@ class ArsipDokumenController extends Controller
         $arsipDokumen->perihal = $request->perihal;
         $arsipDokumen->nama_dokumen = $request->nama_dokumen;
         $arsipDokumen->tanggal_upload = $request->tanggal_upload;
-        $arsipDokumen->file_path = $filePath;
+        $arsipDokumen->file_path = 'dokumen/' . $filename; // relatif dari public_html
         $arsipDokumen->file_name = $file->getClientOriginalName();
         $arsipDokumen->file_type = $file->getClientMimeType();
         $arsipDokumen->save();
@@ -113,17 +122,30 @@ class ArsipDokumenController extends Controller
         $arsipDokumen->perihal = $request->perihal;
         $arsipDokumen->nama_dokumen = $request->nama_dokumen;
         $arsipDokumen->tanggal_upload = $request->tanggal_upload;
+
         if ($request->hasFile('file')) {
-            // Hapus file lama jika ada
-            if ($arsipDokumen->file_path) {
-                Storage::disk('public')->delete($arsipDokumen->file_path);
+            $destination = base_path('../public_html/dokumen');
+
+            if (!File::exists($destination)) {
+                File::makeDirectory($destination, 0755, true);
             }
+
+            if ($arsipDokumen->file_path) {
+                $oldFile = base_path('../public_html/' . $arsipDokumen->file_path);
+                if (File::exists($oldFile)) {
+                    File::delete($oldFile);
+                }
+            }
+
             $file = $request->file('file');
-            $filePath = $file->storeAs('dokumen', Str::slug($request->nama_dokumen) . '.' . $file->getClientOriginalExtension(), 'public');
-            $arsipDokumen->file_path = $filePath;
+            $filename = Str::slug($request->nama_dokumen) . '.' . $file->getClientOriginalExtension();
+            $file->move($destination, $filename);
+
+            $arsipDokumen->file_path = 'dokumen/' . $filename;
             $arsipDokumen->file_name = $file->getClientOriginalName();
             $arsipDokumen->file_type = $file->getClientMimeType();
         }
+
         $arsipDokumen->save();
         return redirect()->route('arsip_dokumen.index')->with('success', 'Dokumen berhasil diperbarui.');
     }
@@ -148,16 +170,18 @@ class ArsipDokumenController extends Controller
     public function download($id)
     {
         $arsipDokumen = ArsipDokumen::findOrFail($id);
-        if (Storage::disk('public')->exists($arsipDokumen->file_path)) {
+        $filePath = base_path('../public_html/' . $arsipDokumen->file_path);
+
+        if (file_exists($filePath)) {
             $arsipDokumen->downloaded += 1;
             $arsipDokumen->save();
 
-            $filePath = Storage::disk('public')->path($arsipDokumen->file_path);
             return response()->download($filePath, $arsipDokumen->file_name);
         }
 
         return redirect()->back()->with('error', 'File tidak ditemukan.');
     }
+
 
     /**
      * View the specified document.
@@ -165,10 +189,12 @@ class ArsipDokumenController extends Controller
     public function view($id)
     {
         $arsipDokumen = ArsipDokumen::findOrFail($id);
-        if (Storage::disk('public')->exists($arsipDokumen->file_path)) {
-            $filePath = Storage::disk('public')->path($arsipDokumen->file_path);
+        $filePath = base_path('../public_html/' . $arsipDokumen->file_path);
+
+        if (file_exists($filePath)) {
             return response()->file($filePath);
         }
+
         return redirect()->back()->with('error', 'File tidak ditemukan.');
     }
 }

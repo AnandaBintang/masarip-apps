@@ -25,7 +25,10 @@
             <label for="user-role">Role:</label>
             <select name="role" id="user-role" style="width: 100%;">
                 <option value="">-- Pilih Role --</option>
-                <option value="administrator" {{ old('role') == 'administrator' ? 'selected' : '' }}>Administrator</option>
+                @if (auth()->user()->role === 'administrator')
+                    <option value="administrator" {{ old('role') == 'administrator' ? 'selected' : '' }}>Administrator
+                    </option>
+                @endif
                 <option value="petugas" {{ old('role') == 'petugas' ? 'selected' : '' }}>Petugas</option>
                 <option value="staff" {{ old('role') == 'staff' ? 'selected' : '' }}>Staff Umum</option>
             </select>

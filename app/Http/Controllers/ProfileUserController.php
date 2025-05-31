@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 
 class ProfileUserController extends Controller
 {
@@ -42,12 +44,29 @@ class ProfileUserController extends Controller
         ]);
 
         $user = Auth::user();
-
         $profile = $user->profile()->firstOrCreate([]);
 
         if ($request->hasFile('foto_profil')) {
-            $path = $request->file('foto_profil')->store('profile_pictures', 'public');
-            $profile->foto_profil = $path;
+            $destination = base_path('../public_html/profile_pictures');
+
+            // Buat folder jika belum ada
+            if (!File::exists($destination)) {
+                File::makeDirectory($destination, 0755, true);
+            }
+
+            // Hapus file lama jika ada
+            if ($profile->foto_profil) {
+                $oldPath = base_path('../public_html/' . $profile->foto_profil);
+                if (File::exists($oldPath)) {
+                    File::delete($oldPath);
+                }
+            }
+
+            $file = $request->file('foto_profil');
+            $filename = 'profil_' . Str::slug($user->username) . '.' . $file->getClientOriginalExtension();
+            $file->move($destination, $filename);
+
+            $profile->foto_profil = 'profile_pictures/' . $filename;
         }
 
         $profile->jabatan = $request->input('jabatan');
@@ -70,6 +89,6 @@ class ProfileUserController extends Controller
             return redirect()->route('login')->with('success', 'Password berhasil diganti. Mohon Login kembali.');
         }
 
-        return redirect()->route('profile.show')->with('success', 'Profile updated successfully.');
+        return redirect()->route('profile.show')->with('success', 'Profil berhasil diperbarui.');
     }
 }

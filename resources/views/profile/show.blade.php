@@ -12,7 +12,7 @@
                     onchange="previewFotoProfil(event)" style="display:block; margin-bottom:10px;" />
                 <div>
                     @if (!empty($foto_profil))
-                        <img id="preview-foto" src="{{ asset('storage/' . $foto_profil) }}" alt="Preview Foto"
+                        <img id="preview-foto" src="{{ asset($foto_profil) }}" alt="Preview Foto"
                             style="max-width:120px; border-radius:8px; border:1px solid #e0e0e0; padding:6px; background:#fafafa;" />
                     @else
                         <img id="preview-foto" src="" alt="Preview Foto"

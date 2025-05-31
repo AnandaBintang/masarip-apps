@@ -28,7 +28,7 @@
                     onchange="previewLogo(event)" />
                 <div class="mt-3">
                     @if (!empty($profilDesa) && $profilDesa->logo)
-                        <img id="preview-logo" src="{{ asset('storage/' . $profilDesa->logo) }}" alt="Preview Logo"
+                        <img id="preview-logo" src="{{ asset($profilDesa->logo) }}" alt="Preview Logo"
                             style="max-width:150px; border:1px solid #ccc; padding:5px;" />
                     @else
                         <img id="preview-logo" src="" alt="Preview Logo"

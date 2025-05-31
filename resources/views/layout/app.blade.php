@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>MasAriP - Sistem E-Arsip</title>
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}" />
+    <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/png" />
 </head>
 
 <body>
@@ -18,7 +19,7 @@
     <main class="main" id="pageContents" style="position: relative; z-index: 1;">
         <div
             style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 0; display: flex; align-items: center; justify-content: center;">
-            <img src="{{ asset('img/logo-unesa.png') }}" alt="Logo Unesa Background"
+            <img src="{{ asset('img/logo-arsip.png') }}" alt="Logo Arsip Background"
                 style="max-width: 70vw; max-height: 60vh; opacity: 0.07;" />
         </div>
 
