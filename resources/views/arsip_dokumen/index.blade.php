@@ -54,19 +54,23 @@
                         <td>{{ $arsip->downloaded }}x</td>
                         <td>
                             <a href="{{ route('arsip_dokumen.view', $arsip->id) }}" target="_blank">
-                                <button>Lihat Dokumen</button>
+                                <button
+                                    style="background-color: #17a2b8; color: white; border: none; padding: 5px 10px; margin: 2px; border-radius: 3px;">Lihat</button>
                             </a>
                             <a href="{{ route('arsip_dokumen.download', $arsip->id) }}">
-                                <button>Download Dokumen</button>
+                                <button
+                                    style="background-color: #28a745; color: white; border: none; padding: 5px 10px; margin: 2px; border-radius: 3px;">Download</button>
                             </a>
                             <a href="{{ route('arsip_dokumen.edit', $arsip->id) }}">
-                                <button>Edit</button>
+                                <button
+                                    style="background-color: #ffc107; color: black; border: none; padding: 5px 10px; margin: 2px; border-radius: 3px;">Edit</button>
                             </a>
                             <form action="{{ route('arsip_dokumen.destroy', $arsip->id) }}" method="POST"
                                 style="display: inline;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit"
+                                    style="background-color: #dc3545; color: white; border: none; padding: 5px 10px; margin: 2px; border-radius: 3px;"
                                     onclick="return confirm('Yakin ingin menghapus arsip dokumen ini?')">Hapus</button>
                             </form>
                         </td>

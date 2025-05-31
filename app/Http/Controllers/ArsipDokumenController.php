@@ -112,7 +112,17 @@ class ArsipDokumenController extends Controller
     public function edit($id)
     {
         $arsipDokumen = ArsipDokumen::findOrFail($id);
-        return view('arsip_dokumen.edit', compact('arsipDokumen'));
+        $saranaSimpan = SaranaSimpan::all();
+        $category = Category::all();
+
+        $data = [
+            'title' => 'Edit Dokumen',
+            'arsipDokumen' => $arsipDokumen,
+            'saranaSimpan' => $saranaSimpan,
+            'category' => $category,
+        ];
+
+        return view('arsip_dokumen.edit', $data);
     }
 
     /**

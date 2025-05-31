@@ -37,7 +37,7 @@
                 @foreach ($category as $cat)
                     <option value="{{ $cat->nama }}" data-perihal="{{ $cat->perihal }}"
                         {{ old('kategori') == $cat->nama ? 'selected' : '' }}>
-                        {{ $cat->nama }}
+                        {{ $cat->nama }} - {{ $cat->tujuan }}
                     </option>
                 @endforeach
 
