@@ -11,7 +11,7 @@ class UserController extends Controller
     public function index()
     {
         $roles = Auth::user()->role;
-        $query = User::query();
+        $query = User::with('profile');
 
         if ($roles != 'administrator') {
             $query->where('role', '!=', 'administrator');

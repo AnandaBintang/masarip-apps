@@ -15,7 +15,9 @@
 
         <div style="margin-bottom: 10px;">
             <label for="user-username">Username:</label>
-            <input name="username" type="username" id="user-username" style="width: 100%;" value="{{ old('username') }}" />
+            <input name="username" type="text" id="user-username" style="width: 100%;" value="{{ old('username') }}"
+                pattern="[^\s]+" title="Username cannot contain spaces"
+                oninput="this.value = this.value.replace(/\s/g, '_')" />
             @error('username')
                 <div style="color: red;">{{ $message }}</div>
             @enderror
