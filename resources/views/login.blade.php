@@ -35,7 +35,8 @@
 
             <label for="username">Username</label>
             <input type="text" id="username" name="username" placeholder="Username" value="{{ old('username') }}"
-                required />
+                style="width: 100%;" pattern="[^\s]+" title="Username cannot contain spaces"
+                oninput="this.value = this.value.replace(/\s/g, '_')" required />
 
             <label for="password">Password</label>
             <input type="password" id="password" name="password" placeholder="Password" required />

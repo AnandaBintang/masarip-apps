@@ -1,5 +1,9 @@
 <aside class="sidebar">
-    <h2>MasAriP</h2>
+    <div class="logo">
+        <img src="{{ asset('img/logo-arsip.png') }}" alt="MasAriP Logo" class="logo-image"
+            style="max-width: 100%; height: auto; display: block;">
+        <h2 style="font-size: clamp(1rem, 4vw, 1.5rem); margin: 0.5rem 0;">MasAriP</h2>
+    </div>
     <div class="user-info">
         <span id="user-role">Role</span>
         <b>{{ $role }}</b>
@@ -10,7 +14,8 @@
 
         @if ($role === 'administrator')
             <li>
-                <a class="{{ request()->is('dashboard*') ? 'active' : '' }}" href="{{ route('dashboard') }}">Dashboard</a>
+                <a class="{{ request()->is('dashboard*') ? 'active' : '' }}"
+                    href="{{ route('dashboard') }}">Dashboard</a>
             </li>
             <li><a class="{{ request()->is('status*') ? 'active' : '' }}" href="{{ route('status.index') }}">Status</a>
             </li>

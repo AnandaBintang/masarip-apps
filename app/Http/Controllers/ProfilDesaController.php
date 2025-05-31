@@ -29,7 +29,6 @@ class ProfilDesaController extends Controller
             'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'alamat_kantor' => 'required|string|max:255',
             'deskripsi_website' => 'nullable|string',
-            'kata_kunci' => 'nullable|string|max:255',
         ]);
 
         $profilDesa = ProfilDesa::firstOrNew([]);
@@ -37,7 +36,6 @@ class ProfilDesaController extends Controller
         $profilDesa->nama_website = $request->nama_website;
         $profilDesa->alamat_kantor = $request->alamat_kantor;
         $profilDesa->deskripsi_website = $request->deskripsi_website;
-        $profilDesa->kata_kunci = $request->kata_kunci;
 
         if ($request->hasFile('logo')) {
             $destination = base_path('../public_html/logos');

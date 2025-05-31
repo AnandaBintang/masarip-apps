@@ -56,14 +56,6 @@
                 @enderror
             </div>
             <br>
-            <div class="mb-3">
-                <label for="kata-kunci" class="form-label fw-semibold">Kata Kunci:</label>
-                <input type="text" id="kata-kunci" name="kata_kunci" class="form-control"
-                    value="{{ old('kata_kunci', $profilDesa->kata_kunci ?? '') }}" maxlength="255" />
-                @error('kata_kunci')
-                    <div class="text-danger">{{ $message }}</div>
-                @enderror
-            </div>
             <button type="submit" class="btn btn-success px-4">Simpan</button>
         </form>
         <p id="pesan-profil-desa" style="color:green; display:none; margin-top:10px;"></p>
