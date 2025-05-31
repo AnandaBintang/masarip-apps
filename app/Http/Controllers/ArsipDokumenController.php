@@ -149,9 +149,13 @@ class ArsipDokumenController extends Controller
     {
         $arsipDokumen = ArsipDokumen::findOrFail($id);
         if (Storage::disk('public')->exists($arsipDokumen->file_path)) {
+            $arsipDokumen->downloaded += 1;
+            $arsipDokumen->save();
+
             $filePath = Storage::disk('public')->path($arsipDokumen->file_path);
             return response()->download($filePath, $arsipDokumen->file_name);
         }
+
         return redirect()->back()->with('error', 'File tidak ditemukan.');
     }
 

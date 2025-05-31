@@ -35,6 +35,7 @@
                     <th>Perihal</th>
                     <th>Nama Dokumen</th>
                     <th>Tanggal Upload</th>
+                    <th>Download</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -48,6 +49,7 @@
                         <td>{{ $arsip->perihal }}</td>
                         <td>{{ $arsip->nama_dokumen }}</td>
                         <td>{{ $arsip->tanggal_upload }}</td>
+                        <td>{{ $arsip->downloaded }}x</td>
                         <td>
                             <a href="{{ route('arsip_dokumen.view', $arsip->id) }}" target="_blank">
                                 <button>Lihat Dokumen</button>

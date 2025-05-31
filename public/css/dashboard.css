@@ -200,7 +200,7 @@ button:hover {
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('logo-arsip.jpeg') center center / cover no-repeat;
+    background: url('../img/logo-arsip.png') center center / cover no-repeat;
     z-index: -1;
     /* agar di belakang teks */
     border-radius: 10px;

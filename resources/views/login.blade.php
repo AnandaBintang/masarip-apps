@@ -18,7 +18,7 @@
             <img src="{{ asset('img/logo-sda.png') }}" alt="Logo MasArip" />
         </div>
         <div class="title">Selamat Datang di MasArip</div>
-        <div class="subtitle">Masyarakat Arsip Pilang</div>
+        <div class="subtitle">Manajemen Arsip Desa Pilang</div>
 
         <form method="POST" action="{{ route('login') }}">
             @csrf

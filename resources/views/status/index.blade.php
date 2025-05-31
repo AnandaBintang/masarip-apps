@@ -29,6 +29,7 @@
                     <th>Role</th>
                     <th>Username</th>
                     <th>Status Login</th>
+                    <th>Jumlah Login</th>
                 </tr>
             </thead>
             <tbody id="user-table">
@@ -38,6 +39,19 @@
                         <td>{{ $user->nama }}</td>
                         <td>{{ $user->role }}</td>
                         <td>{{ $user->username }}</td>
+                        <td>
+                            @if ($user->is_online)
+                                <span
+                                    style="display: inline-block; padding: 0.25em 0.75em; background-color: #28a745; color: #fff; border-radius: 12px; font-size: 0.9em;">
+                                    Online
+                                </span>
+                            @else
+                                <span
+                                    style="display: inline-block; padding: 0.25em 0.75em; background-color: #dc3545; color: #fff; border-radius: 12px; font-size: 0.9em;">
+                                    Offline
+                                </span>
+                            @endif
+                        </td>
                         <td>{{ $user->logged_in }}x Login</td>
                     </tr>
                 @empty
