@@ -14,6 +14,9 @@
                     Masuk</option>
                 <option value="Surat Keluar" {{ old('nama', $category->nama) == 'Surat Keluar' ? 'selected' : '' }}>Surat
                     Keluar</option>
+                <option value="Keputusan Kades" {{ old('nama', $category->nama) == 'Keputusan Kades' ? 'selected' : '' }}>
+                    Keputusan
+                    Kades</option>
             </select>
             @error('nama')
                 <div style="color: red;">{{ $message }}</div>

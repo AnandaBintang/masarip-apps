@@ -61,18 +61,20 @@
                                 <button
                                     style="background-color: #28a745; color: white; border: none; padding: 5px 10px; margin: 2px; border-radius: 3px;">Download</button>
                             </a>
-                            <a href="{{ route('arsip_dokumen.edit', $arsip->id) }}">
-                                <button
-                                    style="background-color: #ffc107; color: black; border: none; padding: 5px 10px; margin: 2px; border-radius: 3px;">Edit</button>
-                            </a>
-                            <form action="{{ route('arsip_dokumen.destroy', $arsip->id) }}" method="POST"
-                                style="display: inline;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit"
-                                    style="background-color: #dc3545; color: white; border: none; padding: 5px 10px; margin: 2px; border-radius: 3px;"
-                                    onclick="return confirm('Yakin ingin menghapus arsip dokumen ini?')">Hapus</button>
-                            </form>
+                            @if (auth()->user()->role !== 'staff')
+                                <a href="{{ route('arsip_dokumen.edit', $arsip->id) }}">
+                                    <button
+                                        style="background-color: #ffc107; color: black; border: none; padding: 5px 10px; margin: 2px; border-radius: 3px;">Edit</button>
+                                </a>
+                                <form action="{{ route('arsip_dokumen.destroy', $arsip->id) }}" method="POST"
+                                    style="display: inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit"
+                                        style="background-color: #dc3545; color: white; border: none; padding: 5px 10px; margin: 2px; border-radius: 3px;"
+                                        onclick="return confirm('Yakin ingin menghapus arsip dokumen ini?')">Hapus</button>
+                                </form>
+                            @endif
                         </td>
                     </tr>
                 @empty

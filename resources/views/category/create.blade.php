@@ -17,6 +17,8 @@
                 <option value="">-- Pilih Kategori --</option>
                 <option value="Surat Masuk" {{ old('nama') == 'Surat Masuk' ? 'selected' : '' }}>Surat Masuk</option>
                 <option value="Surat Keluar" {{ old('nama') == 'Surat Keluar' ? 'selected' : '' }}>Surat Keluar</option>
+                <option value="Keputusan Kades" {{ old('nama') == 'Keputusan Kades' ? 'selected' : '' }}>Keputusan Kades
+                </option>
             </select>
             @error('nama')
                 <div style="color: red;">{{ $message }}</div>

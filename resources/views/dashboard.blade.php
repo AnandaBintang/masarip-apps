@@ -23,30 +23,32 @@
                     <span style="font-size: 1.5rem;"><i class="fa fa-arrow-circle-right"></i></span>
                 </a>
             </div>
-            <div class="card"
-                style="flex:1 1 250px; background: #d1432c; border-radius: 10px; color: #fff; min-width: 220px; margin-bottom: 1rem;">
-                <div style="padding: 1.5rem 1rem 1rem 1.5rem;">
-                    <span style="font-size: 2.5rem; font-weight: bold; display: block;">{{ $divisiCount }}</span>
-                    <span style="font-size: 1.2rem;">Divisi</span>
+            @if (auth()->user()->role !== 'staff')
+                <div class="card"
+                    style="flex:1 1 250px; background: #d1432c; border-radius: 10px; color: #fff; min-width: 220px; margin-bottom: 1rem;">
+                    <div style="padding: 1.5rem 1rem 1rem 1.5rem;">
+                        <span style="font-size: 2.5rem; font-weight: bold; display: block;">{{ $divisiCount }}</span>
+                        <span style="font-size: 1.2rem;">Divisi</span>
+                    </div>
+                    <a href="{{ route('user.index') }}"
+                        style="background: #b92d1a; border-radius: 0 0 10px 10px; padding: 1rem 1.5rem; display: flex; align-items: center; justify-content: space-between;color: #fff; text-decoration: none;">
+                        <span style="font-size: 1.5rem;">More Info</span>
+                        <span style="font-size: 1.5rem;"><i class="fa fa-arrow-circle-right"></i></span>
+                    </a>
                 </div>
-                <a href="{{ route('user.index') }}"
-                    style="background: #b92d1a; border-radius: 0 0 10px 10px; padding: 1rem 1.5rem; display: flex; align-items: center; justify-content: space-between;color: #fff; text-decoration: none;">
-                    <span style="font-size: 1.5rem;">More Info</span>
-                    <span style="font-size: 1.5rem;"><i class="fa fa-arrow-circle-right"></i></span>
-                </a>
-            </div>
-            <div class="card"
-                style="flex:1 1 250px; background: #6b7b3a; border-radius: 10px; color: #fff; min-width: 220px; margin-bottom: 1rem;">
-                <div style="padding: 1.5rem 1rem 1rem 1.5rem;">
-                    <span style="font-size: 2.5rem; font-weight: bold; display: block;">{{ $usersCount }}</span>
-                    <span style="font-size: 1.2rem;">User</span>
+                <div class="card"
+                    style="flex:1 1 250px; background: #6b7b3a; border-radius: 10px; color: #fff; min-width: 220px; margin-bottom: 1rem;">
+                    <div style="padding: 1.5rem 1rem 1rem 1.5rem;">
+                        <span style="font-size: 2.5rem; font-weight: bold; display: block;">{{ $usersCount }}</span>
+                        <span style="font-size: 1.2rem;">User</span>
+                    </div>
+                    <a href="{{ route('user.index') }}"
+                        style="background: #5a6a2e; border-radius: 0 0 10px 10px; padding: 1rem 1.5rem; display: flex; align-items: center; justify-content: space-between;color: #fff; text-decoration: none;">
+                        <span style="font-size: 1.5rem;">More Info</span>
+                        <span style="font-size: 1.5rem;"><i class="fa fa-arrow-circle-right"></i></span>
+                    </a>
                 </div>
-                <a href="{{ route('user.index') }}"
-                    style="background: #5a6a2e; border-radius: 0 0 10px 10px; padding: 1rem 1.5rem; display: flex; align-items: center; justify-content: space-between;color: #fff; text-decoration: none;">
-                    <span style="font-size: 1.5rem;">More Info</span>
-                    <span style="font-size: 1.5rem;"><i class="fa fa-arrow-circle-right"></i></span>
-                </a>
-            </div>
+            @endif
         </div>
 
         <div class="dashboard-tables" style="display: flex; gap: 2rem; flex-wrap: wrap;">
